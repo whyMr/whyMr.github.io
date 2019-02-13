@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+ 	body{
+ 	 	background-color:#333;
+ 	}
+ 	#dv{
+ 		width:600px;
+		height:50px;
+		background:white;
+		border-radius:8px;
+		list-style:none;
+		margin:0 auto;
+		position:relative;
+ 	}
+ 	#uu{
+		width:600px;
+		height:50px;
+		background:white;
+		
+		list-style:none;
+		display:flex;
+		justify-content: space-between;
+		margin:0 auto;
+ 	}
+ 	li{
+ 		z-index:100;
+		width:100px;
+		height:50px;
+		line-height:50px;
+		font-weight:600;
+		text-align:center;
+		cursor:pointer;
+ 	}
+	span{
+		left:0;
+		position:absolute;
+		width:100px;
+		height:50px;
+		background:url(images/logo.jpg)no-repeat center;
+		background-position:1px,2px;
+	}
+</style>
+</head>
+<body>
+	<div id="dv">
+		<span id="yun"></span>
+		<ul id="uu">
+			<li class="bg">北京北京</li>
+			<li>天津天津</li>
+			<li>上海上海</li>
+			<li>无敌无敌</li>
+			<li>买了否冷</li>
+		</ul>
+	</div>
+</body>
+<script>
+	var yun=document.getElementById("yun");
+	var ulobj=document.getElementById("uu");
+	var liobj=ulobj.children;
+	for(var i=0;i<liobj.length;i++){
+		liobj[i].onmouseover=jinRu;
+		liobj[i].onmouseout=liKai;
+		liobj[i].onclick=dianJi;
+	};
+
+	function jinRu(){
+		dongHua2(yun,this.offsetLeft);
+	};
+
+	var yiDong=0;	//记录上次移动的位置
+
+	function dianJi(){
+	yiDong=this.offsetLeft;
+
+	};
+	function liKai(){
+	dongHua2(yun, yiDong)
+	};
+
+	//缓动动画的函数
+	 function dongHua2(elsement,muBiao){//首先传入两个参数  一个是元素，一个目标
+	   	    clearInterval(elsement.inme)
+			elsement.inme=setInterval(function(){
+			//首先获取元素的当前位置
+			var dangQian=elsement.offsetLeft;
+			//在设置这个元素的移动步数 目标减去当前/10 就是要走的步数缓动效果
+			var yiDong=(muBiao-dangQian)/10;
+			//判断要走的步数是否大于0 如果大于零向上取整，如果小于零向下取整
+			yiDong=dangQian>0?Math.ceil(yiDong):Math.floor(yiDong);
+			//让元素移动10步动起来
+			dangQian+=yiDong;
+			elsement.style.left=dangQian+"px";
+			if(dangQian==muBiao){
+				clearInterval(elsement.inme)
+			}
+			},20)
+		};
+</script>
+</html>
