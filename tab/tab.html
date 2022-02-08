@@ -43,61 +43,20 @@
 		background:url(images/logo.jpg)no-repeat center;
 		background-position:1px,2px;
 	}
+	.yuan{	
+		width:200px;
+		height:400px;
+		background:url(images/pt01.png)no-repeat center;
+		}
+		
 </style>
 </head>
 <body>
-	<div id="dv">
-		<span id="yun"></span>
-		<ul id="uu">
-			<li class="bg">北京北京</li>
-			<li>天津天津</li>
-			<li>上海上海</li>
-			<li>无敌无敌</li>
-			<li>买了否冷</li>
-		</ul>
+	<div class="yuan">
+		
 	</div>
 </body>
 <script>
-	var yun=document.getElementById("yun");
-	var ulobj=document.getElementById("uu");
-	var liobj=ulobj.children;
-	for(var i=0;i<liobj.length;i++){
-		liobj[i].onmouseover=jinRu;
-		liobj[i].onmouseout=liKai;
-		liobj[i].onclick=dianJi;
-	};
-
-	function jinRu(){
-		dongHua2(yun,this.offsetLeft);
-	};
-
-	var yiDong=0;	//记录上次移动的位置
-
-	function dianJi(){
-	yiDong=this.offsetLeft;
-
-	};
-	function liKai(){
-	dongHua2(yun, yiDong)
-	};
-
-	//缓动动画的函数
-	 function dongHua2(elsement,muBiao){//首先传入两个参数  一个是元素，一个目标
-	   	    clearInterval(elsement.inme)
-			elsement.inme=setInterval(function(){
-			//首先获取元素的当前位置
-			var dangQian=elsement.offsetLeft;
-			//在设置这个元素的移动步数 目标减去当前/10 就是要走的步数缓动效果
-			var yiDong=(muBiao-dangQian)/10;
-			//判断要走的步数是否大于0 如果大于零向上取整，如果小于零向下取整
-			yiDong=dangQian>0?Math.ceil(yiDong):Math.floor(yiDong);
-			//让元素移动10步动起来
-			dangQian+=yiDong;
-			elsement.style.left=dangQian+"px";
-			if(dangQian==muBiao){
-				clearInterval(elsement.inme)
-			}
-			},20)
-		};
+	
 </script>
 </html>
